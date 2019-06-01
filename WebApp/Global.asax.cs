@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Ninject;
+using Ninject.Modules;
+using Ninject.Web.Mvc;
+using System.Configuration;
 using System.Web.Mvc;
 using System.Web.Routing;
+using WebApp.Infrastructure.NinjectModules;
 
 namespace WebApp
 {
@@ -13,6 +14,15 @@ namespace WebApp
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            string connectionString = ConfigurationManager.ConnectionStrings["WebAppConnection"].ConnectionString;
+            NinjectModule serviceModule = new ServiceModule(connectionString);
+            NinjectModule autoMapperModule = new AutoMapperModule();
+
+            var kernel = new StandardKernel(serviceModule, autoMapperModule);
+
+
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
     }
 }

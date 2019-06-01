@@ -43,7 +43,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.8.1.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject, Version=3.3.3.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.3\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.3.1\lib\net45\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common.WebHost, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.WebHost.3.3.1\lib\net45\Ninject.Web.Common.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.3.0\lib\net45\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -60,6 +81,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -104,11 +128,15 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\Ninject.Web.Common.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\MappingProfile.cs" />
+    <Compile Include="Infrastructure\NinjectModules\AutoMapperModule.cs" />
+    <Compile Include="Infrastructure\NinjectModules\ServiceModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +159,28 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AOPenenzaTest.BLL.AbstractEmployeeService\AOPenenzaTest.BLL.AbstractEmployeeService.csproj">
+      <Project>{1C0EAC5A-A3E6-41EF-9905-8DE1FAF46CB1}</Project>
+      <Name>AOPenenzaTest.BLL.AbstractEmployeeService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AOPenenzaTest.BLL.EmployeeService\AOPenenzaTest.BLL.EmployeeService.csproj">
+      <Project>{BA21C0A8-7216-45FC-811C-44DED3EA30F3}</Project>
+      <Name>AOPenenzaTest.BLL.EmployeeService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AOPenenzaTest.DAL.AbstractRepository\AOPenenzaTest.DAL.AbstractRepository.csproj">
+      <Project>{2615DFB5-EACC-4DB3-8578-18E1B5D69CAE}</Project>
+      <Name>AOPenenzaTest.DAL.AbstractRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AOPenenzaTest.DAL.EF\AOPenenzaTest.DAL.EF.csproj">
+      <Project>{11E4B397-9E77-493C-8743-7040ED173AB2}</Project>
+      <Name>AOPenenzaTest.DAL.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AOPenenzaTest.DAL.RepositoryEF\AOPenenzaTest.DAL.RepositoryEF.csproj">
+      <Project>{6ACF1B1B-B9AB-45D9-B5D5-EB975B37B826}</Project>
+      <Name>AOPenenzaTest.DAL.RepositoryEF</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
