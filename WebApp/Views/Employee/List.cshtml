@@ -67,6 +67,9 @@
                     .appendTo("body")
                     .load(this.href)
                     .dialog({
+                        open: function (event, ui) {
+                            $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
+                        },
                         show: { effect: "blind", duration: 200 },
                         hide: { effect: "blind", duration: 200 },
                         Height: 'auto',
