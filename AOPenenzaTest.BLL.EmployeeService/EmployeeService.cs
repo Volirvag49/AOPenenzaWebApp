@@ -12,8 +12,8 @@ namespace AOPenenzaTest.BLL.EmployeeService
 {
     public class EmployeeService : IEmployeeServiceGet, IDisposable
     {
-        private IUnitOfWork _unitOfWork;
-        private IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
         public EmployeeService(IUnitOfWork unitOfWork, IMapper mapper)
         {

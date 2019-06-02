@@ -1,6 +1,7 @@
 ﻿using AOPenenzaTest.BLL.AbstractEmployeeService.DTO;
 using AOPenenzaTest.DAL.EF.Entities;
 using AutoMapper;
+using WebApp.Models;
 
 namespace WebApp.Infrastructure
 {
@@ -10,6 +11,9 @@ namespace WebApp.Infrastructure
         {
             CreateMap<DbEmployee, EmployeeDTO>();
             CreateMap<EmployeeDTO, DbEmployee>();
+
+            CreateMap<EmployeeViewModel, EmployeeDTO>();
+            CreateMap<EmployeeDTO, EmployeeViewModel>();
         }
     }
 }
