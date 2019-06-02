@@ -14,11 +14,15 @@ namespace WebApp.Controllers
     public class EmployeeController : Controller
     {
         private readonly IEmployeeServiceGet _employeeServiceGet;
+        private readonly IEmployeeServiceCUD _employeeServiceCUD;
         private readonly IMapper _mapper;
 
-        public EmployeeController(IEmployeeServiceGet employeeServiceGet, IMapper mapper)
+        public EmployeeController(IEmployeeServiceGet employeeServiceGet,
+            IEmployeeServiceCUD employeeServiceCUD,
+            IMapper mapper)
         {
             _employeeServiceGet = employeeServiceGet;
+            _employeeServiceCUD = employeeServiceCUD;
             _mapper = mapper;
         }
         // GET: index
@@ -36,31 +40,33 @@ namespace WebApp.Controllers
         }
 
         // GET: Employee/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            var employeeDTO = await _employeeServiceGet.GetByIdAsync(id);
+            return PartialView(_mapper.Map<EmployeeDTO, EmployeeViewModel>(employeeDTO));
         }
 
         // GET: Employee/Create
         public ActionResult Create()
         {
-            return View();
+            var newEmployee = new EmployeeViewModel();
+
+            return PartialView(newEmployee);
         }
 
         // POST: Employee/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public async Task<ActionResult> Create([Bind(Include = "Id,FirstName,LastName,Patronymic,Age")] EmployeeViewModel employee)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                var employeeDTO = _mapper.Map<EmployeeViewModel, EmployeeDTO>(employee);
+                await _employeeServiceCUD.AddAsync(employeeDTO);
 
-                return RedirectToAction("Index");
+                return PartialView("Success");
             }
-            catch
-            {
-                return View();
-            }
+
+            return PartialView(employee);
         }
 
         // GET: Employee/Edit/5

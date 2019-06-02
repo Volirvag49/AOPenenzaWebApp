@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\EmployeeDTO.cs" />
-    <Compile Include="IEmployeeServiceCRUD.cs" />
+    <Compile Include="IEmployeeServiceCUD.cs" />
     <Compile Include="IEmployeeServiceGet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

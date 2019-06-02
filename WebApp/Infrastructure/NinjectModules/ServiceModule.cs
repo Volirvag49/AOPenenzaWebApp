@@ -25,6 +25,7 @@ namespace WebApp.Infrastructure.NinjectModules
 
             Bind<EmployeeService>().ToSelf().InRequestScope();
             Bind<IEmployeeServiceGet>().ToMethod(ctx => ctx.Kernel.Get<EmployeeService>());
+            Bind<IEmployeeServiceCUD>().ToMethod(ctx => ctx.Kernel.Get<EmployeeService>());
 
         }
     }    
