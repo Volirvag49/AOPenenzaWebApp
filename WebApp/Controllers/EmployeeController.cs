@@ -14,11 +14,11 @@ namespace WebApp.Controllers
 {
     public class EmployeeController : Controller
     {
-        private readonly IEmployeeServiceCRUD _employeeServiceCRUD;
+        private readonly IEmployeeCRUDService _employeeServiceCRUD;
         private readonly IMapper _mapper;
 
         public EmployeeController(
-            IEmployeeServiceCRUD employeeServiceCRUD,
+            IEmployeeCRUDService employeeServiceCRUD,
             IMapper mapper)
         {
             _employeeServiceCRUD = employeeServiceCRUD;

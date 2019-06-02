@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Статистика";
+}
+<br />
+<h2>Статистика</h2>
+<form id="actionForm" action="@Url.Action("GetStatistic")" method="get" class="form-inline">
+    <div class="form-group">
+        <select name="type" size="1">
+            <option value="1" selected="selected">Кол-во сотрудников</option>
+            <option value="2">Средний возраст сотрудников</option>
+        </select>
+    </div>
+    <button type="submit" value="Ok" class="btn btn-default"></button>
+</form>
+<br />
+<h2 id="content"></h2>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $("#actionForm").submit(function (event) {
+            event.preventDefault();
+            $.ajax({
+                beforeSend: function () {
+                    $("#loadingDiv").show();
+                },
+                url: $("#actionForm").attr('action'),
+                data: $("#actionForm").serialize(),
+                type: 'GET',
+                cache: false,
+                success: function (data) {
+                    $('#content').text(data);
+                },
+                complete: function () {
+                    $("#loadingDiv").hide();
+                }
+            });
+        });
+    });
+</script>

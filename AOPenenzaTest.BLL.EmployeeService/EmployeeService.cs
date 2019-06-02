@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AOPenenzaTest.BLL.EmployeeService
 {
-    public class EmployeeService : IEmployeeServiceCRUD, IDisposable
+    public class EmployeeService : IEmployeeCRUDService, IDisposable
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;

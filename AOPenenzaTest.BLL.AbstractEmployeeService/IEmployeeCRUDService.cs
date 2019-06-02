@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AOPenenzaTest.BLL.AbstractEmployeeService
 {
-    public interface IEmployeeServiceCRUD : IEmployeeServiceGet
+    public interface IEmployeeCRUDService : IEmployeeGetService
     {
         Task<EmployeeDTO> AddAsync(EmployeeDTO employeeDTO);
         Task<EmployeeDTO> UpdateAsync(EmployeeDTO employeeDTO);

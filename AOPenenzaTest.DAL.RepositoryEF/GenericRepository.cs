@@ -3,6 +3,7 @@ using AOPenenzaTest.DAL.EF;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace AOPenenzaTest.DAL.RepositoryEF
@@ -25,6 +26,16 @@ namespace AOPenenzaTest.DAL.RepositoryEF
         public async Task<T> GetByIdAsynс(int? id)
         {
             return await dbSet.FindAsync(id);
+        }
+
+        public async Task<int> CountAsync(Expression<Func<T, bool>> where = null)
+        {
+            return await dbSet.CountAsync(where);
+        }
+
+        public async Task<decimal> AverageAsync(Expression<Func<T, decimal>> where = null)
+        {
+            return await dbSet.AverageAsync(where);
         }
 
         public void Create(T entity)
